@@ -1,4 +1,9 @@
 import { ObjectType, Field } from "@nestjs/graphql";
+import { Film } from 'src/films/film.model';
+import { Planet } from 'src/planets/planet.model';
+import { Species } from 'src/species/species.model';
+import { Starship } from 'src/starships/starship.model';
+import { Vehicle } from 'src/vehicles/vehicle.model';
 
 /**
  * Represents a Person in the Star Wars universe.
@@ -29,20 +34,20 @@ export class Person {
   @Field(() => String, { description: "The skin color of this person." })
   skin_color: string;
 
-  @Field(() => String, { description: "The URL of a planet resource, a planet this person was born on or inhabits." })
-  homeworld: string;
+  @Field(() => Planet, { description: "A planet this person was born on or inhabits." })
+  homeworld: Planet;
 
-  @Field(() => [String], { description: "An array of film resource URLs that this person has been in." })
-  films: string[];
+  @Field(() => [Film], { description: "An array of films that this person has been in." })
+  films: Film[];
 
-  @Field(() => [String], { description: "An array of species resource URLs this person belongs to." })
-  species: string[];
+  @Field(() => [Species], { description: "An array of species this person belongs to." })
+  species: Species[];
 
-  @Field(() => [String], { description: "An array of starship resource URLs this person has piloted." })
-  starships: string[];
+  @Field(() => [Starship], { description: "An array of starships this person has piloted." })
+  starships: Starship[];
 
-  @Field(() => [String], { description: "An array of vehicle resource URLs this person has piloted." })
-  vehicles: string[];
+  @Field(() => [Vehicle], { description: "An array of vehicles this person has piloted." })
+  vehicles: Vehicle[];
 
   @Field(() => String, { description: "The ISO 8601 date format of the time that this resource was created." })
   created: string;

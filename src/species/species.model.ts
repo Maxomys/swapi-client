@@ -1,4 +1,7 @@
 import { ObjectType, Field } from "@nestjs/graphql";
+import { Film } from 'src/films/film.model';
+import { Person } from 'src/people/person.model';
+import { Planet } from 'src/planets/planet.model';
 
 /**
  * Represents a Species in the Star Wars universe.
@@ -32,14 +35,14 @@ export class Species {
   @Field(() => String, { description: "The language commonly spoken by this species." })
   language: string;
 
-  @Field(() => String, { description: "The URL of a planet resource that this species originates from." })
-  homeworld: string;
+  @Field(() => Planet, { description: "The Planet Resource that this species originates from." })
+  homeworld: Planet;
 
-  @Field(() => [String], { description: "An array of People URL Resources that are of this species." })
-  people: string[];
+  @Field(() => [Person], { description: "An array of People Resources that are of this species." })
+  people: Person[];
 
-  @Field(() => [String], { description: "An array of Film URL Resources that this species has appeared in." })
-  films: string[];
+  @Field(() => [Film], { description: "An array of Film Resources that this species has appeared in." })
+  films: Film[];
 
   @Field(() => String, { description: "The ISO 8601 date format of the time that this resource was created." })
   created: string;

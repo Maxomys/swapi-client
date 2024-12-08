@@ -1,4 +1,6 @@
 import { ObjectType, Field } from "@nestjs/graphql";
+import { Film } from 'src/films/film.model';
+import { Person } from 'src/people/person.model';
 
 /**
  * Represents a Planet in the Star Wars universe.
@@ -32,11 +34,11 @@ export class Planet {
   @Field(() => String, { description: "The percentage of the planet surface that is naturally occurring water or bodies of water." })
   surface_water: string;
 
-  @Field(() => [String], { description: "An array of People URL Resources that live on this planet." })
-  residents: string[];
+  @Field(() => [Person], { description: "An array of People that live on this planet." })
+  residents: Person[];
 
-  @Field(() => [String], { description: "An array of Film URL Resources that this planet has appeared in." })
-  films: string[];
+  @Field(() => [Film], { description: "An array of Films that this planet has appeared in." })
+  films: Film[];
 
   @Field(() => String, { description: "The ISO 8601 date format of the time that this resource was created." })
   created: string;

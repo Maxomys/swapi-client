@@ -1,4 +1,9 @@
 import { ObjectType, Field, Int } from "@nestjs/graphql";
+import { Person } from 'src/people/person.model';
+import { Planet } from 'src/planets/planet.model';
+import { Species } from 'src/species/species.model';
+import { Starship } from 'src/starships/starship.model';
+import { Vehicle } from 'src/vehicles/vehicle.model';
 
 /**
  * Represents a Film in the Star Wars universe.
@@ -23,20 +28,20 @@ export class Film {
   @Field(() => String, { description: "The ISO 8601 date format of the film release." })
   release_date: string;
 
-  @Field(() => [String], { description: "An array of species resource URLs that are in this film." })
-  species: string[];
+  @Field(() => [Species], { description: "An array of species that are in this film." })
+  species: Species[];
 
-  @Field(() => [String], { description: "An array of starship resource URLs that are in this film." })
-  starships: string[];
+  @Field(() => [Starship], { description: "An array of starship that are in this film." })
+  starships: Starship[];
 
-  @Field(() => [String], { description: "An array of vehicle resource URLs that are in this film." })
-  vehicles: string[];
+  @Field(() => [Vehicle], { description: "An array of vehicle that are in this film." })
+  vehicles: Vehicle[];
 
-  @Field(() => [String], { description: "An array of people resource URLs that are in this film." })
-  characters: string[];
+  @Field(() => [Person], { description: "An array of people that are in this film." })
+  characters: Person[];
 
-  @Field(() => [String], { description: "An array of planet resource URLs that are in this film." })
-  planets: string[];
+  @Field(() => [Planet], { description: "An array of planet that are in this film." })
+  planets: Planet[];
 
   @Field(() => String, { description: "The ISO 8601 date format of the time that this resource was created." })
   created: string;

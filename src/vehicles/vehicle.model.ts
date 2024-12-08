@@ -1,4 +1,6 @@
 import { ObjectType, Field } from "@nestjs/graphql";
+import { Film } from 'src/films/film.model';
+import { Person } from 'src/people/person.model';
 
 /**
  * Represents a Vehicle in the Star Wars universe.
@@ -38,11 +40,11 @@ export class Vehicle {
   @Field(() => String, { description: "The maximum length of time this vehicle can provide consumables for its entire crew without resupply." })
   consumables: string;
 
-  @Field(() => [String], { description: "An array of Film URL Resources that this vehicle has appeared in." })
-  films: string[];
+  @Field(() => [Film], { description: "An array of Film Resources that this vehicle has appeared in." })
+  films: Film[];
 
-  @Field(() => [String], { description: "An array of People URL Resources that this vehicle has been piloted by." })
-  pilots: string[];
+  @Field(() => [Person], { description: "An array of People Resources that this vehicle has been piloted by." })
+  pilots: Person[];
 
   @Field(() => String, { description: "The ISO 8601 date format of the time that this resource was created." })
   created: string;
