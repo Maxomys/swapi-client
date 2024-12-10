@@ -13,7 +13,7 @@ export class SwapiService {
   constructor(private swapiClient: SwapiClient) {}
 
   async getFilmById(id: string) {
-    const film = this.swapiClient.fetchResourceById<Film>('films', id);
+    const film = this.swapiClient.getResourceById<Film>('films', id);
     return plainToInstance(Film, film);
   }
 
@@ -23,7 +23,7 @@ export class SwapiService {
   }
 
   async getPersonById(id: string) {
-    const person = this.swapiClient.fetchResourceById<Person>('people', id);
+    const person = this.swapiClient.getResourceById<Person>('people', id);
     return plainToInstance(Person, person);
   }
 
@@ -33,7 +33,7 @@ export class SwapiService {
   }
 
   async getPlanetById(id: string) {
-    const planet = this.swapiClient.fetchResourceById<Planet>('planets', id);
+    const planet = this.swapiClient.getResourceById<Planet>('planets', id);
     return plainToInstance(Planet, planet);
   }
 
@@ -43,7 +43,7 @@ export class SwapiService {
   }
 
   async getSpeciesById(id: string) {
-    const species = this.swapiClient.fetchResourceById<Species>('species', id);
+    const species = this.swapiClient.getResourceById<Species>('species', id);
     return plainToInstance(Species, species);
   }
 
@@ -53,7 +53,7 @@ export class SwapiService {
   }
 
   async getStarshipById(id: string) {
-    const starship = this.swapiClient.fetchResourceById<Starship>('starships', id);
+    const starship = this.swapiClient.getResourceById<Starship>('starships', id);
     return plainToInstance(Starship, starship);
   }
 
@@ -63,7 +63,7 @@ export class SwapiService {
   }
 
   async getVehicleById(id: string) {
-    const vehicle = this.swapiClient.fetchResourceById<Vehicle>('vehicles', id);
+    const vehicle = this.swapiClient.getResourceById<Vehicle>('vehicles', id);
     return plainToInstance(Vehicle, vehicle);
   }
 

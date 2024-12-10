@@ -29,21 +29,26 @@ export class SwapiClient {
     return this.fetchAllPages<T>(endpoint, { search });
   }
 
+  async getResourceById<T>(endpoint: string, id: string): Promise<T> {
+    const url = `${this.baseUrl}${endpoint}/${id}/`;
+    return this.fetchResourceByUrl<T>(url);
+  }
+
   private async fetchAllPages<T>(endpoint: string, params?: Record<string, any>): Promise<T[]> {
     const results: T[] = [];
     let nextUrl: string | null = `${this.baseUrl}${endpoint}`;
 
     while (nextUrl) {
-      const response = await this.httpService.get(nextUrl, { params }).toPromise();
-      results.push(...response.data.results);
-      nextUrl = response.data.next;
+      const response = await this.fetchResourceByUrl<SwapiPagedResponse<T>>(nextUrl, params);
+      results.push(...response.results);
+      nextUrl = response.next;
     }
 
     return results;
   }
 
   private async fetchFilteredResources<T>(endpoint: string, filterType: string, filterValue: string): Promise<T[]> {
-    const relatedResource = await this.fetchResourceById(filterType, filterValue);
+    const relatedResource = await this.getResourceById(filterType, filterValue);
 
     if (!relatedResource) {
       throw new Error(`Invalid filter: ${filterType} with value ${filterValue}`);
@@ -59,17 +64,19 @@ export class SwapiClient {
     }
   }
 
-  async fetchResourceById<T>(endpoint: string, id: string): Promise<T> {
-    const url = `${this.baseUrl}${endpoint}/${id}/`;
-    return this.fetchResourceByUrl<T>(url);
-  }
-
-  private async fetchResourceByUrl<T>(url: string): Promise<T> {
+  private async fetchResourceByUrl<T>(url: string, params?: Record<string, any>): Promise<T> {
     try {
-      const response = await this.httpService.get(url).toPromise();
+      const response = await this.httpService.get(url, { params }).toPromise();
       return response.data;
     } catch (error) {
       console.error(error.message);
     }
   }
+}
+
+interface SwapiPagedResponse<T> {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: T[];
 }
