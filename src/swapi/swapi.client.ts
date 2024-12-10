@@ -1,5 +1,7 @@
+import { RedisService } from '@liaoliaots/nestjs-redis';
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
+import Redis from 'ioredis';
 
 // todo: refactor deprecated toPromise()
 @Injectable()
@@ -15,7 +17,13 @@ export class SwapiClient {
     people: { planets: 'homeworld' },
   };
 
-  constructor(private readonly httpService: HttpService) {}
+  private readonly ttlSeconds = 24 * 60 * 60; // 24 hours
+
+  private readonly redis: Redis | null;
+
+  constructor(private readonly httpService: HttpService, private readonly redisService: RedisService) {
+    this.redis = this.redisService.getOrThrow();
+  }
 
   async getResource<T>(
     endpoint: string,
@@ -65,8 +73,17 @@ export class SwapiClient {
   }
 
   private async fetchResourceByUrl<T>(url: string, params?: Record<string, any>): Promise<T> {
+    const cachedResponse: T = JSON.parse(await this.redis.get(url));
+
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+    
     try {
       const response = await this.httpService.get(url, { params }).toPromise();
+
+      await this.redis.set(url, JSON.stringify(response.data), 'EX', this.ttlSeconds);
+      
       return response.data;
     } catch (error) {
       console.error(error.message);
