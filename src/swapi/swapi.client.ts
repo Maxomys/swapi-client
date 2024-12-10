@@ -1,6 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 
+// todo: refactor deprecated toPromise()
 @Injectable()
 export class SwapiClient {
   private readonly baseUrl = 'https://swapi.dev/api/';
