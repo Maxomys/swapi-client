@@ -19,7 +19,7 @@ export class SwapiService {
 
   async getFilms(search?: string, filter?: { filterType: string; filterValue: string }) {
     const films = await this.swapiClient.getResource<Film>('films', search, filter);
-    return films.map((film) => plainToInstance(Film, film));
+    return plainToInstance(Film, films);
   }
 
   async getPersonById(id: string) {
@@ -29,7 +29,7 @@ export class SwapiService {
 
   async getPeople(search?: string, filter?: { filterType: string; filterValue: string }) {
     const people = await this.swapiClient.getResource<Person>('people', search, filter);
-    return people.map((person) => plainToInstance(Person, person));
+    return plainToInstance(Person, people);
   }
 
   async getPlanetById(id: string) {
@@ -39,7 +39,7 @@ export class SwapiService {
 
   async getPlanets(search?: string, filter?: { filterType: string; filterValue: string }) {
     const planets = await this.swapiClient.getResource<Planet>('planets', search, filter);
-    return planets.map((planet) => plainToInstance(Planet, planet));
+    return plainToInstance(Planet, planets);
   }
 
   async getSpeciesById(id: string) {
@@ -49,7 +49,7 @@ export class SwapiService {
 
   async getSpecies(search?: string, filter?: { filterType: string; filterValue: string }) {
     const speciesList = await this.swapiClient.getResource<Species>('species', search, filter);
-    return speciesList.map((species) => plainToInstance(Species, species));
+    return plainToInstance(Species, speciesList);
   }
 
   async getStarshipById(id: string) {
@@ -59,7 +59,7 @@ export class SwapiService {
 
   async getStarships(search?: string, filter?: { filterType: string; filterValue: string }) {
     const starships = await this.swapiClient.getResource<Starship>('starships', search, filter);
-    return starships.map((starship) => plainToInstance(Starship, starship));
+    return plainToInstance(Starship, starships);
   }
 
   async getVehicleById(id: string) {
@@ -69,6 +69,6 @@ export class SwapiService {
 
   async getVehicles(search?: string, filter?: { filterType: string; filterValue: string }) {
     const vehicles = await this.swapiClient.getResource<Vehicle>('vehicles', search, filter);
-    return vehicles.map((vehicle) => plainToInstance(Vehicle, vehicle));
+    return plainToInstance(Vehicle, vehicles);
   }
 }
