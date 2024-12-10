@@ -10,13 +10,14 @@ import { StarshipsModule } from './starships/starships.module';
 import { VehiclesModule } from './vehicles/vehicles.module';
 import { SpeciesModule } from './species/species.module';
 import { PlanetsModule } from './planets/planets.module';
+import { SwapiModule } from './swapi/swapi.module';
 
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       driver: ApolloDriver,
-      playground: false,
+      playground: true,
     }),
     PeopleModule,
     FilmsModule,
@@ -24,6 +25,7 @@ import { PlanetsModule } from './planets/planets.module';
     VehiclesModule,
     SpeciesModule,
     PlanetsModule,
+    SwapiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
