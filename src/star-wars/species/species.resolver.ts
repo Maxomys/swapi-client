@@ -1,8 +1,8 @@
 import { Args, Int, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
 import { Species } from './species.model';
-import { Film } from 'src/starWars/films/film.model';
-import { Person } from 'src/starWars/people/person.model';
-import { Planet } from 'src/starWars/planets/planet.model';
+import { Film } from 'src/star-wars/films/film.model';
+import { Person } from 'src/star-wars/people/person.model';
+import { Planet } from 'src/star-wars/planets/planet.model';
 import { SwapiService } from 'src/swapi/swapi.service';
 
 @Resolver(() => Species)

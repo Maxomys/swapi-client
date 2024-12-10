@@ -4,14 +4,15 @@ import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { PeopleModule } from './starWars/people/people.module';
-import { FilmsModule } from './starWars/films/films.module';
-import { StarshipsModule } from './starWars/starships/starships.module';
-import { VehiclesModule } from './starWars/vehicles/vehicles.module';
-import { SpeciesModule } from './starWars/species/species.module';
-import { PlanetsModule } from './starWars/planets/planets.module';
+import { PeopleModule } from './star-wars/people/people.module';
+import { FilmsModule } from './star-wars/films/films.module';
+import { StarshipsModule } from './star-wars/starships/starships.module';
+import { VehiclesModule } from './star-wars/vehicles/vehicles.module';
+import { SpeciesModule } from './star-wars/species/species.module';
+import { PlanetsModule } from './star-wars/planets/planets.module';
 import { SwapiModule } from './swapi/swapi.module';
 import { RedisModule } from '@liaoliaots/nestjs-redis';
+import { AnalysisModule } from './star-wars/analysis/analysis.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { RedisModule } from '@liaoliaots/nestjs-redis';
     SpeciesModule,
     PlanetsModule,
     SwapiModule,
+    AnalysisModule,
   ],
   controllers: [AppController],
   providers: [AppService],
