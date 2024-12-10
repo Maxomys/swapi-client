@@ -20,15 +20,11 @@ export class PlanetsResolver {
 
   @ResolveField(() => [Film])
   async films(@Root() planet: Planet): Promise<Film[]> {
-    return this.swapiService.getFilms(undefined, { filterType: 'planets', filterValue: this.getId(planet) });
+    return this.swapiService.getFilms(undefined, { filterType: 'planets', filterValue: planet.getId() });
   }
 
   @ResolveField(() => [Person])
   async residents(@Root() planet: Planet): Promise<Person[]> {
-    return this.swapiService.getPeople(undefined, { filterType: 'planets', filterValue: this.getId(planet) });
-  }
-
-  private getId(planet: Planet) {
-    return planet.url.split('/').splice(-2, 1)[0];
+    return this.swapiService.getPeople(undefined, { filterType: 'planets', filterValue: planet.getId() });
   }
 }

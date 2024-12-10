@@ -23,31 +23,26 @@ export class FilmsResolver {
 
   @ResolveField(() => [Person])
   async characters(@Root() film: Film): Promise<Person[]> {
-    return this.swapiService.getPeople(undefined, { filterType: 'films', filterValue: this.getId(film) });
+    return this.swapiService.getPeople(undefined, { filterType: 'films', filterValue: film.getId() });
   }
 
   @ResolveField(() => [Planet])
   async planets(@Root() film: Film): Promise<Planet[]> {
-    return this.swapiService.getPlanets(undefined, { filterType: 'films', filterValue: this.getId(film) });
+    return this.swapiService.getPlanets(undefined, { filterType: 'films', filterValue: film.getId() });
   }
 
   @ResolveField(() => [Species])
   async species(@Root() film: Film): Promise<Species[]> {
-    return this.swapiService.getSpecies(undefined, { filterType: 'films', filterValue: this.getId(film) });
+    return this.swapiService.getSpecies(undefined, { filterType: 'films', filterValue: film.getId() });
   }
 
   @ResolveField(() => [Starship])
   async starships(@Root() film: Film): Promise<Starship[]> {
-    return this.swapiService.getStarships(undefined, { filterType: 'films', filterValue: this.getId(film) });
+    return this.swapiService.getStarships(undefined, { filterType: 'films', filterValue: film.getId() });
   }
 
   @ResolveField(() => [Vehicle])
   async vehicles(@Root() film: Film): Promise<Vehicle[]> {
-    return this.swapiService.getVehicles(undefined, { filterType: 'films', filterValue: this.getId(film) });
-  }
-
-  // todo: refactor repetitions
-  private getId(film: Film) {
-    return film.url.split('/').splice(-2, 1)[0];
+    return this.swapiService.getVehicles(undefined, { filterType: 'films', filterValue: film.getId() });
   }
 }

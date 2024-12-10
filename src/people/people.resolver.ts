@@ -24,31 +24,27 @@ export class PeopleResolver {
   @ResolveField(() => Planet)
   async homeworld(@Root() person: Person): Promise<Planet> {
     return (
-      await this.swapiService.getPlanets(undefined, { filterType: 'people', filterValue: this.getId(person) })
+      await this.swapiService.getPlanets(undefined, { filterType: 'people', filterValue: person.getId() })
     )[0];
   }
 
   @ResolveField(() => [Film])
   async films(@Root() person: Person): Promise<Film[]> {
-    return this.swapiService.getFilms(undefined, { filterType: 'people', filterValue: this.getId(person) });
+    return this.swapiService.getFilms(undefined, { filterType: 'people', filterValue: person.getId() });
   }
 
   @ResolveField(() => [Species])
   async species(@Root() person: Person): Promise<Species[]> {
-    return this.swapiService.getSpecies(undefined, { filterType: 'people', filterValue: this.getId(person) });
+    return this.swapiService.getSpecies(undefined, { filterType: 'people', filterValue: person.getId() });
   }
 
   @ResolveField(() => [Starship])
   async starships(@Root() person: Person): Promise<Starship[]> {
-    return this.swapiService.getStarships(undefined, { filterType: 'people', filterValue: this.getId(person) });
+    return this.swapiService.getStarships(undefined, { filterType: 'people', filterValue: person.getId() });
   }
 
   @ResolveField(() => [Vehicle])
   async vehicles(@Root() person: Person): Promise<Vehicle[]> {
-    return this.swapiService.getVehicles(undefined, { filterType: 'people', filterValue: this.getId(person) });
-  }
-
-  private getId(person: Person) {
-    return person.url.split('/').splice(-2, 1)[0];
+    return this.swapiService.getVehicles(undefined, { filterType: 'people', filterValue: person.getId() });
   }
 }

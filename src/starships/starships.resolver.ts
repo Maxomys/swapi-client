@@ -20,15 +20,11 @@ export class StarshipsResolver {
 
   @ResolveField(() => [Film])
   async films(@Root() starship: Starship): Promise<Film[]> {
-    return this.swapiService.getFilms(undefined, { filterType: 'starships', filterValue: this.getId(starship) });
+    return this.swapiService.getFilms(undefined, { filterType: 'starships', filterValue: starship.getId() });
   }
 
   @ResolveField(() => [Person])
   async pilots(@Root() starship: Starship): Promise<Person[]> {
-    return this.swapiService.getPeople(undefined, { filterType: 'starships', filterValue: this.getId(starship) });
-  }
-
-  private getId(starship: Starship) {
-    return starship.url.split('/').splice(-2, 1)[0];
+    return this.swapiService.getPeople(undefined, { filterType: 'starships', filterValue: starship.getId() });
   }
 }

@@ -22,21 +22,17 @@ export class SpeciesResolver {
   @ResolveField(() => Planet)
   async homeworld(@Root() species: Species): Promise<Planet | null> {
     return (
-      await this.swapiService.getPlanets(undefined, { filterType: 'species', filterValue: this.getId(species) })
+      await this.swapiService.getPlanets(undefined, { filterType: 'species', filterValue: species.getId() })
     )[0];
   }
 
   @ResolveField(() => [Film])
   async films(@Root() species: Species): Promise<Film[]> {
-    return this.swapiService.getFilms(undefined, { filterType: 'species', filterValue: this.getId(species) });
+    return this.swapiService.getFilms(undefined, { filterType: 'species', filterValue: species.getId() });
   }
 
   @ResolveField(() => [Person])
   async people(@Root() species: Species): Promise<Person[]> {
-    return this.swapiService.getPeople(undefined, { filterType: 'species', filterValue: this.getId(species) });
-  }
-
-  private getId(species: Species) {
-    return species.url.split('/').splice(-2, 1)[0];
+    return this.swapiService.getPeople(undefined, { filterType: 'species', filterValue: species.getId() });
   }
 }

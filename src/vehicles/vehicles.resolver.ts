@@ -20,15 +20,11 @@ export class VehiclesResolver {
 
   @ResolveField(() => [Film])
   async films(@Root() vehicle: Vehicle): Promise<Film[]> {
-    return this.swapiService.getFilms(undefined, { filterType: 'vehicles', filterValue: this.getId(vehicle) });
+    return this.swapiService.getFilms(undefined, { filterType: 'vehicles', filterValue: vehicle.getId() });
   }
 
   @ResolveField(() => [Person])
   async pilots(@Root() vehicle: Vehicle): Promise<Person[]> {
-    return this.swapiService.getPeople(undefined, { filterType: 'vehicles', filterValue: this.getId(vehicle) });
-  }
-
-  private getId(vehicle: Vehicle) {
-    return vehicle.url.split('/').splice(-2, 1)[0];
+    return this.swapiService.getPeople(undefined, { filterType: 'vehicles', filterValue: vehicle.getId() });
   }
 }
