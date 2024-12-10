@@ -1,4 +1,5 @@
 import { ObjectType, Field } from '@nestjs/graphql';
+import { BaseStarWarsModel } from 'src/baseStarWars.model';
 import { Film } from 'src/films/film.model';
 import { Person } from 'src/people/person.model';
 
@@ -6,7 +7,7 @@ import { Person } from 'src/people/person.model';
  * Represents a Vehicle in the Star Wars universe.
  */
 @ObjectType({ description: 'A Vehicle resource in the Star Wars universe.' })
-export class Vehicle {
+export class Vehicle extends BaseStarWarsModel {
   @Field(() => String, { description: "The name of this vehicle. The common name, such as 'Sand Crawler'." })
   name: string;
 
@@ -48,12 +49,4 @@ export class Vehicle {
 
   @Field(() => [Person], { description: 'An array of People Resources that this vehicle has been piloted by.' })
   pilots: Person[] | string[];
-
-  @Field(() => String, { description: 'The ISO 8601 date format of the time that this resource was created.' })
-  created: string;
-
-  @Field(() => String, { description: 'The ISO 8601 date format of the time that this resource was edited.' })
-  edited: string;
-
-  url: string;
 }

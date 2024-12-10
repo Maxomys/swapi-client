@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { BaseStarWarsModel } from 'src/baseStarWars.model';
 import { Person } from 'src/people/person.model';
 import { Planet } from 'src/planets/planet.model';
 import { Species } from 'src/species/species.model';
@@ -9,7 +10,7 @@ import { Vehicle } from 'src/vehicles/vehicle.model';
  * Represents a Film in the Star Wars universe.
  */
 @ObjectType({ description: 'A Film resource in the Star Wars universe.' })
-export class Film {
+export class Film extends BaseStarWarsModel {
   @Field(() => String, { description: 'The title of this film.' })
   title: string;
 
@@ -42,13 +43,4 @@ export class Film {
 
   @Field(() => [Planet], { description: 'An array of planet that are in this film.' })
   planets: Planet[] | string[];
-
-  @Field(() => String, { description: 'The ISO 8601 date format of the time that this resource was created.' })
-  created: string;
-
-  @Field(() => String, { description: 'The ISO 8601 date format of the time that this resource was edited.' })
-  edited: string;
-
-  @Field(() => String)
-  url: string;
 }
