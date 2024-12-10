@@ -4,12 +4,12 @@ import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { PeopleModule } from './people/people.module';
-import { FilmsModule } from './films/films.module';
-import { StarshipsModule } from './starships/starships.module';
-import { VehiclesModule } from './vehicles/vehicles.module';
-import { SpeciesModule } from './species/species.module';
-import { PlanetsModule } from './planets/planets.module';
+import { PeopleModule } from './starWars/people/people.module';
+import { FilmsModule } from './starWars/films/films.module';
+import { StarshipsModule } from './starWars/starships/starships.module';
+import { VehiclesModule } from './starWars/vehicles/vehicles.module';
+import { SpeciesModule } from './starWars/species/species.module';
+import { PlanetsModule } from './starWars/planets/planets.module';
 import { SwapiModule } from './swapi/swapi.module';
 import { RedisModule } from '@liaoliaots/nestjs-redis';
 

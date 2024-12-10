@@ -1,10 +1,10 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { BaseStarWarsModel } from 'src/baseStarWars.model';
-import { Film } from 'src/films/film.model';
-import { Planet } from 'src/planets/planet.model';
-import { Species } from 'src/species/species.model';
-import { Starship } from 'src/starships/starship.model';
-import { Vehicle } from 'src/vehicles/vehicle.model';
+import { BaseStarWarsModel } from 'src/starWars/baseStarWars.model';
+import { Film } from 'src/starWars/films/film.model';
+import { Planet } from 'src/starWars/planets/planet.model';
+import { Species } from 'src/starWars/species/species.model';
+import { Starship } from 'src/starWars/starships/starship.model';
+import { Vehicle } from 'src/starWars/vehicles/vehicle.model';
 
 /**
  * Represents a Person in the Star Wars universe.

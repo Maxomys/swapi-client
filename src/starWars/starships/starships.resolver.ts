@@ -1,7 +1,7 @@
 import { Args, Int, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
 import { Starship } from './starship.model';
-import { Film } from 'src/films/film.model';
-import { Person } from 'src/people/person.model';
+import { Film } from 'src/starWars/films/film.model';
+import { Person } from 'src/starWars/people/person.model';
 import { SwapiService } from 'src/swapi/swapi.service';
 
 @Resolver(() => Starship)

@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { SwapiClient } from './swapi.client';
-import { Film } from 'src/films/film.model';
-import { Person } from 'src/people/person.model';
-import { Planet } from 'src/planets/planet.model';
-import { Species } from 'src/species/species.model';
-import { Starship } from 'src/starships/starship.model';
-import { Vehicle } from 'src/vehicles/vehicle.model';
+import { Film } from 'src/starWars/films/film.model';
+import { Person } from 'src/starWars/people/person.model';
+import { Planet } from 'src/starWars/planets/planet.model';
+import { Species } from 'src/starWars/species/species.model';
+import { Starship } from 'src/starWars/starships/starship.model';
+import { Vehicle } from 'src/starWars/vehicles/vehicle.model';
 import { plainToInstance } from 'class-transformer';
 
 @Injectable()

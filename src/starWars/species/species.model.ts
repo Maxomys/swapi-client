@@ -1,8 +1,8 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { BaseStarWarsModel } from 'src/baseStarWars.model';
-import { Film } from 'src/films/film.model';
-import { Person } from 'src/people/person.model';
-import { Planet } from 'src/planets/planet.model';
+import { BaseStarWarsModel } from 'src/starWars/baseStarWars.model';
+import { Film } from 'src/starWars/films/film.model';
+import { Person } from 'src/starWars/people/person.model';
+import { Planet } from 'src/starWars/planets/planet.model';
 
 /**
  * Represents a Species in the Star Wars universe.
