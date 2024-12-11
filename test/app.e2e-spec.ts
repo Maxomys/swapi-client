@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { filmResponse } from './mock-data';
+import { filmResponse, filmSearchResponse } from './mock-data';
 import { GraphQLModule } from '@nestjs/graphql';
 import { PeopleModule } from 'src/star-wars/people/people.module';
 import { FilmsModule } from 'src/star-wars/films/films.module';
@@ -122,6 +122,32 @@ describe('AppController (e2e)', () => {
         .expect(200)
         .expect((res) => {
           expect(res.body).toEqual(filmResponse);
+        });
+    });
+
+    it('should return films with <phantom> in the name', async () => {
+      return request(app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: `
+            query Films {
+              films(search: "phantom") {
+                created
+                edited
+                url
+                title
+                episode_id
+                opening_crawl
+                director
+                producer
+                release_date
+              }
+            }
+          `,
+        })
+        .expect(200)
+        .expect((res) => {
+          expect(res.body).toEqual(filmSearchResponse);
         });
     });
   });
