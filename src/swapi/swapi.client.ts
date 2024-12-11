@@ -2,8 +2,8 @@ import { RedisService } from '@liaoliaots/nestjs-redis';
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import Redis from 'ioredis';
+import { firstValueFrom } from 'rxjs';
 
-// todo: refactor deprecated toPromise()
 @Injectable()
 export class SwapiClient {
   private readonly baseUrl = 'https://swapi.dev/api/';
@@ -92,7 +92,7 @@ export class SwapiClient {
     }
 
     try {
-      const response = await this.httpService.get(newUrl.toString()).toPromise();
+      const response = await firstValueFrom(this.httpService.get(newUrl.toString()));
 
       if (this.redis) {
         await this.redis.set(newUrl.toString(), JSON.stringify(response.data), 'EX', this.ttlSeconds);
