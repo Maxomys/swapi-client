@@ -14,8 +14,8 @@ export class StarshipsResolver {
   }
 
   @Query(() => [Starship], { description: 'Fetch all starships.' })
-  async starships(): Promise<Starship[]> {
-    return this.swapiService.getStarships();
+  async starships(@Args('search') search?: string): Promise<Starship[]> {
+    return this.swapiService.getStarships(search);
   }
 
   @ResolveField(() => [Film])

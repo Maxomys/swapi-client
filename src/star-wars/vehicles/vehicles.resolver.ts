@@ -14,8 +14,8 @@ export class VehiclesResolver {
   }
 
   @Query(() => [Vehicle], { description: 'Fetch all vehicles.' })
-  async vehicles(): Promise<Vehicle[]> {
-    return this.swapiService.getVehicles();
+  async vehicles(@Args('search') search?: string): Promise<Vehicle[]> {
+    return this.swapiService.getVehicles(search);
   }
 
   @ResolveField(() => [Film])

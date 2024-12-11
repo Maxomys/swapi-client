@@ -17,8 +17,8 @@ export class PeopleResolver {
   }
 
   @Query(() => [Person], { description: 'Fetch all people.' })
-  async people(): Promise<Person[]> {
-    return this.swapiService.getPeople();
+  async people(@Args('search') search?: string): Promise<Person[]> {
+    return this.swapiService.getPeople(search);
   }
 
   @ResolveField(() => Planet)

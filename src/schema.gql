@@ -215,6 +215,49 @@ type Vehicle {
   pilots: [Person!]!
 }
 
+"""A Film resource in the Star Wars universe."""
+type Film {
+  """The ISO 8601 date format of the time that this resource was created."""
+  created: String!
+
+  """The ISO 8601 date format of the time that this resource was edited."""
+  edited: String!
+  url: String!
+
+  """The title of this film."""
+  title: String!
+
+  """The episode number of this film."""
+  episode_id: Int!
+
+  """The opening paragraphs at the beginning of this film."""
+  opening_crawl: String!
+
+  """The name of the director of this film."""
+  director: String!
+
+  """The name(s) of the producer(s) of this film. Comma separated."""
+  producer: String!
+
+  """The ISO 8601 date format of the film release."""
+  release_date: String!
+
+  """An array of species that are in this film."""
+  species: [Species!]!
+
+  """An array of starship that are in this film."""
+  starships: [Starship!]!
+
+  """An array of vehicle that are in this film."""
+  vehicles: [Vehicle!]!
+
+  """An array of people that are in this film."""
+  characters: [Person!]!
+
+  """An array of planet that are in this film."""
+  planets: [Planet!]!
+}
+
 """A Person resource in the Star Wars universe."""
 type Person {
   """The ISO 8601 date format of the time that this resource was created."""
@@ -266,49 +309,6 @@ type Person {
   vehicles: [Vehicle!]!
 }
 
-"""A Film resource in the Star Wars universe."""
-type Film {
-  """The ISO 8601 date format of the time that this resource was created."""
-  created: String!
-
-  """The ISO 8601 date format of the time that this resource was edited."""
-  edited: String!
-  url: String!
-
-  """The title of this film."""
-  title: String!
-
-  """The episode number of this film."""
-  episode_id: Int!
-
-  """The opening paragraphs at the beginning of this film."""
-  opening_crawl: String!
-
-  """The name of the director of this film."""
-  director: String!
-
-  """The name(s) of the producer(s) of this film. Comma separated."""
-  producer: String!
-
-  """The ISO 8601 date format of the film release."""
-  release_date: String!
-
-  """An array of species that are in this film."""
-  species: [Species!]!
-
-  """An array of starship that are in this film."""
-  starships: [Starship!]!
-
-  """An array of vehicle that are in this film."""
-  vehicles: [Vehicle!]!
-
-  """An array of people that are in this film."""
-  characters: [Person!]!
-
-  """An array of planet that are in this film."""
-  planets: [Planet!]!
-}
-
 type UniqueWord {
   word: String!
   count: Int!
@@ -325,37 +325,37 @@ type Query {
   person(id: Int!): Person!
 
   """Fetch all people."""
-  people: [Person!]!
+  people(search: String!): [Person!]!
 
   """Fetch a film by id."""
   film(id: Int!): Film!
 
   """Fetch all films."""
-  films: [Film!]!
+  films(search: String!): [Film!]!
 
   """Fetch a starship by id."""
   starship(id: Int!): Starship!
 
   """Fetch all starships."""
-  starships: [Starship!]!
+  starships(search: String!): [Starship!]!
 
   """Fetch a vehicle by id."""
   vehicle(id: Int!): Vehicle!
 
   """Fetch all vehicles."""
-  vehicles: [Vehicle!]!
+  vehicles(search: String!): [Vehicle!]!
 
   """Fetch a species by id."""
   singleSpecies(id: Int!): Species!
 
   """Fetch all species."""
-  species: [Species!]!
+  species(search: String!): [Species!]!
 
   """Fetch a planet by id."""
   planet(id: Int!): Planet!
 
   """Fetch all planets."""
-  planets: [Planet!]!
+  planets(search: String!): [Planet!]!
 
   """Unique words in the opening crawls of all films."""
   analysis: Analysis!

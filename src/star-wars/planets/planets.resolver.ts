@@ -14,8 +14,8 @@ export class PlanetsResolver {
   }
 
   @Query(() => [Planet], { description: 'Fetch all planets.' })
-  async planets(): Promise<Planet[]> {
-    return this.swapiService.getPlanets();
+  async planets(@Args('search') search?: string): Promise<Planet[]> {
+    return this.swapiService.getPlanets(search);
   }
 
   @ResolveField(() => [Film])

@@ -15,8 +15,8 @@ export class SpeciesResolver {
   }
 
   @Query(() => [Species], { description: 'Fetch all species.' })
-  async species(): Promise<Species[]> {
-    return this.swapiService.getSpecies();
+  async species(@Args('search') search?: string): Promise<Species[]> {
+    return this.swapiService.getSpecies(search);
   }
 
   @ResolveField(() => Planet)

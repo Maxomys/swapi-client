@@ -17,8 +17,8 @@ export class FilmsResolver {
   }
 
   @Query(() => [Film], { description: 'Fetch all films.' })
-  async films() {
-    return this.swapiService.getFilms();
+  async films(@Args('search') search?: string) {
+    return this.swapiService.getFilms(search);
   }
 
   @ResolveField(() => [Person])

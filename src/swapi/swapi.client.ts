@@ -78,8 +78,13 @@ export class SwapiClient {
   private async fetchResourceByUrl<T>(url: string, params?: Record<string, any>): Promise<T> {
     let cachedResponse: T = null;
 
+    const newUrl = new URL(url);
+    for (const param in params) {
+      newUrl.searchParams.append(param, params[param]);
+    }
+
     if (this.redis) {
-      cachedResponse = JSON.parse(await this.redis.get(url));
+      cachedResponse = JSON.parse(await this.redis.get(newUrl.toString()));
     }
 
     if (cachedResponse) {
@@ -87,10 +92,10 @@ export class SwapiClient {
     }
 
     try {
-      const response = await this.httpService.get(url, { params }).toPromise();
+      const response = await this.httpService.get(newUrl.toString()).toPromise();
 
       if (this.redis) {
-        await this.redis.set(url, JSON.stringify(response.data), 'EX', this.ttlSeconds);
+        await this.redis.set(newUrl.toString(), JSON.stringify(response.data), 'EX', this.ttlSeconds);
       }
 
       return response.data;
