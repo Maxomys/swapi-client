@@ -43,9 +43,8 @@ export class AnalysisService {
 
     const words = this.cleanAndSplitText(jointCrawls);
     const uniqueWordsInCrawl = new Set(words); // Get only unique words from this crawl
-    console.log(uniqueWordsInCrawl)
 
-    uniqueWordsInCrawl.forEach(key => {
+    uniqueWordsInCrawl.forEach((key) => {
       wordCounts[key] = 0;
     });
 
