@@ -45,3 +45,7 @@ $ npm run test
 # e2e tests
 $ npm run test:e2e
 ```
+
+## Documentation
+
+ With your application running in the background, you can then open your web browser and navigate to http://localhost:3000/graphql to see the GraphQL playground with schema description. Or visit https://studio.apollographql.com/sandbox/explorer/. 
