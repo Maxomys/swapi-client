@@ -36,7 +36,7 @@ export class Person extends BaseStarWarsModel {
   skin_color: string;
 
   @Field(() => Planet, { description: 'A planet this person was born on or inhabits.' })
-  homeworld: Planet;
+  homeworld: Planet | string;
 
   @Field(() => [Film], { description: 'An array of films that this person has been in.' })
   films: Film[] | string[];
