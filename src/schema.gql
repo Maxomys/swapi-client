@@ -1,0 +1,362 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""A Planet resource in the Star Wars universe."""
+type Planet {
+  """The ISO 8601 date format of the time that this resource was created."""
+  created: String!
+
+  """The ISO 8601 date format of the time that this resource was edited."""
+  edited: String!
+  url: String!
+
+  """The name of this planet."""
+  name: String!
+
+  """The diameter of this planet in kilometers."""
+  diameter: String!
+
+  """
+  The number of standard hours it takes for this planet to complete a single rotation on its axis.
+  """
+  rotation_period: String!
+
+  """
+  The number of standard days it takes for this planet to complete a single orbit of its local star.
+  """
+  orbital_period: String!
+
+  """
+  A number denoting the gravity of this planet, where '1' is normal or 1 standard G.
+  """
+  gravity: String!
+
+  """The average population of sentient beings inhabiting this planet."""
+  population: String!
+
+  """The climate of this planet. Comma separated if diverse."""
+  climate: String!
+
+  """The terrain of this planet. Comma separated if diverse."""
+  terrain: String!
+
+  """
+  The percentage of the planet surface that is naturally occurring water or bodies of water.
+  """
+  surface_water: String!
+
+  """An array of People that live on this planet."""
+  residents: [Person!]!
+
+  """An array of Films that this planet has appeared in."""
+  films: [Film!]!
+}
+
+"""A Species resource in the Star Wars universe."""
+type Species {
+  """The ISO 8601 date format of the time that this resource was created."""
+  created: String!
+
+  """The ISO 8601 date format of the time that this resource was edited."""
+  edited: String!
+  url: String!
+
+  """The name of this species."""
+  name: String!
+
+  """The classification of this species, such as 'mammal' or 'reptile'."""
+  classification: String!
+
+  """The designation of this species, such as 'sentient'."""
+  designation: String!
+
+  """The average height of this species in centimeters."""
+  average_height: String!
+
+  """The average lifespan of this species in years."""
+  average_lifespan: String!
+
+  """A comma-separated string of common eye colors for this species."""
+  eye_colors: String!
+
+  """A comma-separated string of common hair colors for this species."""
+  hair_colors: String!
+
+  """A comma-separated string of common skin colors for this species."""
+  skin_colors: String!
+
+  """The language commonly spoken by this species."""
+  language: String!
+
+  """The Planet Resource that this species originates from."""
+  homeworld: Planet!
+
+  """An array of People Resources that are of this species."""
+  people: [Person!]!
+
+  """An array of Film Resources that this species has appeared in."""
+  films: [Film!]!
+}
+
+"""A Starship resource in the Star Wars universe."""
+type Starship {
+  """The ISO 8601 date format of the time that this resource was created."""
+  created: String!
+
+  """The ISO 8601 date format of the time that this resource was edited."""
+  edited: String!
+  url: String!
+
+  """The name of this starship. The common name, such as 'Death Star'."""
+  name: String!
+
+  """
+  The model or official name of this starship, such as 'DS-1 Orbital Battle Station'.
+  """
+  model: String!
+
+  """
+  The class of this starship, such as 'Starfighter' or 'Deep Space Mobile Battlestation'.
+  """
+  starship_class: String!
+
+  """The manufacturer of this starship. Comma separated if more than one."""
+  manufacturer: String!
+
+  """The cost of this starship new, in Galactic Credits."""
+  cost_in_credits: String!
+
+  """The length of this starship in meters."""
+  length: String!
+
+  """The number of personnel needed to run or pilot this starship."""
+  crew: String!
+
+  """The number of non-essential people this starship can transport."""
+  passengers: String!
+
+  """
+  The maximum speed of this starship in the atmosphere. 'N/A' if incapable of atmospheric flight.
+  """
+  max_atmosphering_speed: String!
+
+  """The class of this starship's hyperdrive."""
+  hyperdrive_rating: String!
+
+  """
+  The Maximum number of Megalights this starship can travel in a standard hour.
+  """
+  MGLT: String!
+
+  """The maximum number of kilograms that this starship can transport."""
+  cargo_capacity: String!
+
+  """
+  The maximum length of time that this starship can provide consumables for its entire crew without resupply.
+  """
+  consumables: String!
+
+  """An array of Film Resources that this starship has appeared in."""
+  films: [Film!]!
+
+  """An array of People Resources that this starship has been piloted by."""
+  pilots: [Person!]!
+}
+
+"""A Vehicle resource in the Star Wars universe."""
+type Vehicle {
+  """The ISO 8601 date format of the time that this resource was created."""
+  created: String!
+
+  """The ISO 8601 date format of the time that this resource was edited."""
+  edited: String!
+  url: String!
+
+  """The name of this vehicle. The common name, such as 'Sand Crawler'."""
+  name: String!
+
+  """The model or official name of this vehicle."""
+  model: String!
+
+  """The class of this vehicle, such as 'Wheeled' or 'Repulsorcraft'."""
+  vehicle_class: String!
+
+  """The manufacturer of this vehicle. Comma separated if more than one."""
+  manufacturer: String!
+
+  """The cost of this vehicle new, in Galactic Credits."""
+  cost_in_credits: String!
+
+  """The length of this vehicle in meters."""
+  length: String!
+
+  """The number of personnel needed to run or pilot this vehicle."""
+  crew: String!
+
+  """The number of non-essential people this vehicle can transport."""
+  passengers: String!
+
+  """The maximum speed of this vehicle in the atmosphere."""
+  max_atmosphering_speed: String!
+
+  """The maximum number of kilograms that this vehicle can transport."""
+  cargo_capacity: String!
+
+  """
+  The maximum length of time this vehicle can provide consumables for its entire crew without resupply.
+  """
+  consumables: String!
+
+  """An array of Film Resources that this vehicle has appeared in."""
+  films: [Film!]!
+
+  """An array of People Resources that this vehicle has been piloted by."""
+  pilots: [Person!]!
+}
+
+"""A Person resource in the Star Wars universe."""
+type Person {
+  """The ISO 8601 date format of the time that this resource was created."""
+  created: String!
+
+  """The ISO 8601 date format of the time that this resource was edited."""
+  edited: String!
+  url: String!
+
+  """The name of this person."""
+  name: String!
+
+  """
+  The birth year of the person, using the in-universe standard of BBY or ABY.
+  """
+  birth_year: String!
+
+  """The eye color of this person. 'Unknown' if not known."""
+  eye_color: String!
+
+  """The gender of this person. 'Unknown' or 'n/a' if not applicable."""
+  gender: String!
+
+  """The hair color of this person. 'Unknown' if not known."""
+  hair_color: String!
+
+  """The height of the person in centimeters."""
+  height: String!
+
+  """The mass of the person in kilograms."""
+  mass: String!
+
+  """The skin color of this person."""
+  skin_color: String!
+
+  """A planet this person was born on or inhabits."""
+  homeworld: Planet!
+
+  """An array of films that this person has been in."""
+  films: [Film!]!
+
+  """An array of species this person belongs to."""
+  species: [Species!]!
+
+  """An array of starships this person has piloted."""
+  starships: [Starship!]!
+
+  """An array of vehicles this person has piloted."""
+  vehicles: [Vehicle!]!
+}
+
+"""A Film resource in the Star Wars universe."""
+type Film {
+  """The ISO 8601 date format of the time that this resource was created."""
+  created: String!
+
+  """The ISO 8601 date format of the time that this resource was edited."""
+  edited: String!
+  url: String!
+
+  """The title of this film."""
+  title: String!
+
+  """The episode number of this film."""
+  episode_id: Int!
+
+  """The opening paragraphs at the beginning of this film."""
+  opening_crawl: String!
+
+  """The name of the director of this film."""
+  director: String!
+
+  """The name(s) of the producer(s) of this film. Comma separated."""
+  producer: String!
+
+  """The ISO 8601 date format of the film release."""
+  release_date: String!
+
+  """An array of species that are in this film."""
+  species: [Species!]!
+
+  """An array of starship that are in this film."""
+  starships: [Starship!]!
+
+  """An array of vehicle that are in this film."""
+  vehicles: [Vehicle!]!
+
+  """An array of people that are in this film."""
+  characters: [Person!]!
+
+  """An array of planet that are in this film."""
+  planets: [Planet!]!
+}
+
+type UniqueWord {
+  word: String!
+  count: Int!
+}
+
+"""Analysis of the opening_crawl."""
+type Analysis {
+  unique_words: [UniqueWord!]!
+  most_mentioned_character: [String!]!
+}
+
+type Query {
+  """Fetch a person by id."""
+  person(id: Int!): Person!
+
+  """Fetch all people."""
+  people: [Person!]!
+
+  """Fetch a film by id."""
+  film(id: Int!): Film!
+
+  """Fetch all films."""
+  films: [Film!]!
+
+  """Fetch a starship by id."""
+  starship(id: Int!): Starship!
+
+  """Fetch all starships."""
+  starships: [Starship!]!
+
+  """Fetch a vehicle by id."""
+  vehicle(id: Int!): Vehicle!
+
+  """Fetch all vehicles."""
+  vehicles: [Vehicle!]!
+
+  """Fetch a species by id."""
+  singleSpecies(id: Int!): Species!
+
+  """Fetch all species."""
+  species: [Species!]!
+
+  """Fetch a planet by id."""
+  planet(id: Int!): Planet!
+
+  """Fetch all planets."""
+  planets: [Planet!]!
+
+  """Unique words in the opening crawls of all films."""
+  analysis: Analysis!
+}
