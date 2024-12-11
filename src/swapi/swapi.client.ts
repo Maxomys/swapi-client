@@ -17,7 +17,7 @@ export class SwapiClient {
     people: { planets: 'homeworld' },
   };
 
-  private readonly ttlSeconds = 24 * 60 * 60; // 24 hours
+  private readonly ttlSeconds = process.env.CACHE_TTL_SECONDS
 
   private readonly redis: Redis | null;
 

@@ -12,9 +12,11 @@ import { PlanetsModule } from './star-wars/planets/planets.module';
 import { SwapiModule } from './swapi/swapi.module';
 import { RedisModule } from '@liaoliaots/nestjs-redis';
 import { AnalysisModule } from './star-wars/analysis/analysis.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       driver: ApolloDriver,
@@ -22,8 +24,8 @@ import { AnalysisModule } from './star-wars/analysis/analysis.module';
     }),
     RedisModule.forRoot({
       config: {
-        host: 'localhost',
-        port: 6379,
+        host: process.env.REDIS_HOST,
+        port: parseInt(process.env.REDIS_PORT),
       },
     }),
     PeopleModule,
