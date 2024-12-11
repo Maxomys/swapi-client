@@ -1,3 +1,83 @@
+import { plainToInstance } from 'class-transformer';
+import { Film } from 'src/star-wars/films/film.model';
+import { Person } from 'src/star-wars/people/person.model';
+import { Planet } from 'src/star-wars/planets/planet.model';
+import { Starship } from 'src/star-wars/starships/starship.model';
+
+export const mockStarship = plainToInstance(Starship, {
+  name: 'Millennium Falcon',
+  model: 'YT-1300 light freighter',
+  starship_class: 'Light freighter',
+  manufacturer: 'Corellian Engineering Corporation',
+  cost_in_credits: '100000',
+  length: '34.75',
+  crew: '4',
+  passengers: '6',
+  max_atmosphering_speed: '1050',
+  hyperdrive_rating: '0.5',
+  MGLT: '75',
+  cargo_capacity: '100000',
+  consumables: '2 months',
+  films: [],
+  pilots: [],
+  created: '2014-12-10T16:59:45.094000Z',
+  edited: '2014-12-20T21:23:49.880000Z',
+  url: 'https://swapi.dev/api/starships/10/',
+});
+
+export const mockFilm = plainToInstance(Film, {
+  title: 'A New Hope',
+  episode_id: 4,
+  opening_crawl: 'It is a period of civil war...',
+  director: 'George Lucas',
+  producer: 'Gary Kurtz, Rick McCallum',
+  release_date: '1977-05-25',
+  species: [],
+  starships: [],
+  vehicles: [],
+  characters: [],
+  planets: [],
+  created: '2014-12-10T14:23:31.880000Z',
+  edited: '2014-12-20T19:49:45.256000Z',
+  url: 'https://swapi.dev/api/films/1/',
+});
+
+export const mockPlanet = plainToInstance(Planet, {
+  name: 'Tatooine',
+  diameter: '10465',
+  rotation_period: '23',
+  orbital_period: '304',
+  gravity: '1 standard',
+  population: '200000',
+  climate: 'arid',
+  terrain: 'desert',
+  surface_water: '1',
+  residents: [],
+  films: [],
+  created: '2014-12-09T13:50:49.641000Z',
+  edited: '2014-12-20T20:58:18.411000Z',
+  url: 'https://swapi.dev/api/planets/1/',
+});
+
+export const mockPerson = plainToInstance(Person, {
+  name: 'Luke Skywalker',
+  birth_year: '19BBY',
+  eye_color: 'blue',
+  gender: 'male',
+  hair_color: 'blond',
+  height: '172',
+  mass: '77',
+  skin_color: 'fair',
+  homeworld: mockPlanet,
+  films: [],
+  species: [],
+  starships: [],
+  vehicles: [],
+  created: '2014-12-09T13:50:51.644000Z',
+  edited: '2014-12-20T21:17:56.891000Z',
+  url: 'https://swapi.dev/api/people/1/',
+});
+
 export const filmResponse = {
   data: {
     film: {
