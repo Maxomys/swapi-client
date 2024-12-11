@@ -23,9 +23,7 @@ export class PeopleResolver {
 
   @ResolveField(() => Planet)
   async homeworld(@Root() person: Person): Promise<Planet> {
-    return (
-      await this.swapiService.getPlanets(undefined, { filterType: 'people', filterValue: person.getId() })
-    )[0];
+    return (await this.swapiService.getPlanets(undefined, { filterType: 'people', filterValue: person.getId() }))[0];
   }
 
   @ResolveField(() => [Film])

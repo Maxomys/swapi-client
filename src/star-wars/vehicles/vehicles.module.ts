@@ -4,6 +4,6 @@ import { SwapiModule } from 'src/swapi/swapi.module';
 
 @Module({
   imports: [SwapiModule],
-  providers: [VehiclesResolver]
+  providers: [VehiclesResolver],
 })
 export class VehiclesModule {}

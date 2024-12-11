@@ -4,6 +4,6 @@ import { SwapiModule } from 'src/swapi/swapi.module';
 
 @Module({
   imports: [SwapiModule],
-  providers: [FilmsResolver]
+  providers: [FilmsResolver],
 })
 export class FilmsModule {}

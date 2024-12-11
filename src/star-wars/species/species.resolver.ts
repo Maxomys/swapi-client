@@ -21,9 +21,7 @@ export class SpeciesResolver {
 
   @ResolveField(() => Planet)
   async homeworld(@Root() species: Species): Promise<Planet | null> {
-    return (
-      await this.swapiService.getPlanets(undefined, { filterType: 'species', filterValue: species.getId() })
-    )[0];
+    return (await this.swapiService.getPlanets(undefined, { filterType: 'species', filterValue: species.getId() }))[0];
   }
 
   @ResolveField(() => [Film])

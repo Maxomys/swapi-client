@@ -17,11 +17,14 @@ export class SwapiClient {
     people: { planets: 'homeworld' },
   };
 
-  private readonly ttlSeconds = process.env.CACHE_TTL_SECONDS
+  private readonly ttlSeconds = process.env.CACHE_TTL_SECONDS;
 
   private readonly redis: Redis | null;
 
-  constructor(private readonly httpService: HttpService, private readonly redisService: RedisService) {
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly redisService: RedisService,
+  ) {
     this.redis = this.redisService.getOrNil();
   }
 
@@ -74,7 +77,7 @@ export class SwapiClient {
 
   private async fetchResourceByUrl<T>(url: string, params?: Record<string, any>): Promise<T> {
     let cachedResponse: T = null;
-    
+
     if (this.redis) {
       cachedResponse = JSON.parse(await this.redis.get(url));
     }
@@ -82,14 +85,14 @@ export class SwapiClient {
     if (cachedResponse) {
       return cachedResponse;
     }
-    
+
     try {
       const response = await this.httpService.get(url, { params }).toPromise();
 
       if (this.redis) {
         await this.redis.set(url, JSON.stringify(response.data), 'EX', this.ttlSeconds);
       }
-      
+
       return response.data;
     } catch (error) {
       console.error(error.message);

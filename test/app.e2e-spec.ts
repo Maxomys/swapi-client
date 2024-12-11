@@ -17,6 +17,7 @@ import { MockFunctionMetadata, ModuleMocker } from 'jest-mock';
 
 const moduleMocker = new ModuleMocker(global);
 
+// e2e tests are using real swapi API
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 
