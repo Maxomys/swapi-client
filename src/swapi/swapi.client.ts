@@ -1,6 +1,6 @@
 import { RedisService } from '@liaoliaots/nestjs-redis';
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import Redis from 'ioredis';
 import { firstValueFrom } from 'rxjs';
 
@@ -62,12 +62,13 @@ export class SwapiClient {
     const relatedResource = await this.getResourceById(filterType, filterValue);
 
     if (!relatedResource) {
-      throw new Error(`Invalid filter: ${filterType} with value ${filterValue}`);
+      throw new Error(`Invalid filter: ${filterType} with id ${filterValue}`);
     }
 
     // Match different names for resource references, like 'characters' for people in films
     // Species' planets reference ('homeworld') is not an array
     const relatedLinks: string[] | string = relatedResource[this.dictionary[filterType][endpoint] ?? endpoint];
+
     if (relatedLinks instanceof Array) {
       return await Promise.all(relatedLinks.map((link) => this.fetchResourceByUrl<T>(link)));
     } else {
@@ -100,7 +101,11 @@ export class SwapiClient {
 
       return response.data;
     } catch (error) {
+      if (error.response?.status === 404) {
+        throw new NotFoundException();
+      }
       console.error(error.message);
+      throw new InternalServerErrorException();
     }
   }
 }

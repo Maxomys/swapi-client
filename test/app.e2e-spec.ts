@@ -18,7 +18,7 @@ import { MockFunctionMetadata, ModuleMocker } from 'jest-mock';
 const moduleMocker = new ModuleMocker(global);
 
 // e2e tests are using real swapi API
-describe('AppController (e2e)', () => {
+describe('Resolvers (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -54,7 +54,7 @@ describe('AppController (e2e)', () => {
   });
 
   describe('Star Wars GraphQL Query', () => {
-    it('should return films with nested resources', async () => {
+    it('should return a film by id with nested resources', async () => {
       return request(app.getHttpServer())
         .post('/graphql')
         .send({
@@ -148,6 +148,34 @@ describe('AppController (e2e)', () => {
         .expect(200)
         .expect((res) => {
           expect(res.body).toEqual(filmSearchResponse);
+        });
+    });
+
+    it('should return not found error for non existent film', async () => {
+      return request(app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: `
+            query Film {
+              film(id: 12) {
+                created
+                edited
+                url
+                title
+                episode_id
+                opening_crawl
+                director
+                producer
+                release_date
+              }
+            }
+          `,
+        })
+        .expect(200)
+        .expect((res) => {
+          expect(res.body.errors).toBeInstanceOf(Array);
+          expect(res.body.errors).not.toHaveLength(0);
+          expect(res.body.errors[0].message).toEqual('Not Found');
         });
     });
   });
